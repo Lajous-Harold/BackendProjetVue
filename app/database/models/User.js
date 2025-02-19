@@ -35,7 +35,7 @@ User.init(
       },
     },
     role: {
-      type: DataTypes.ENUM("user", "admin"),
+      type: DataTypes.ENUM(["user", "admin"]),
       allowNull: false,
       defaultValue: "user",
     },
@@ -43,12 +43,12 @@ User.init(
   { modelName: "User", sequelize: sequelizeClient }
 );
 
-// console.log(User === sequelizeClient.models.User);
+console.log(User === sequelizeClient.models.User);
 
-// async function synchrowithDb() {
-//   await User.sync({ alter: true });
-// }
+async function synchrowithDb() {
+  await User.sync({ alter: true });
+}
 
-// synchrowithDb();
+synchrowithDb();
 
 module.exports = User;
