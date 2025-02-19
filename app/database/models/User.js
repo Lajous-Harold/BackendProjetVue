@@ -20,10 +20,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       set(value) {
-        this.setDataValue(
-          "firstName",
-          value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
-        );
+        this.setDataValue("lastName", value.charAt(0).toUpperCase() + value.slice(1).toLowerCase());
       },
     },
     email: {

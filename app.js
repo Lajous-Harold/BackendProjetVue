@@ -5,7 +5,12 @@ const sequelizeClient = require("./app/database/connect");
 const dotenv = require("dotenv");
 
 dotenv.config();
+
+const userRoutes = require("./app/routes/user");
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "10mb" }));
 
 app.set("port", process.env.PORT);
 
@@ -21,5 +26,5 @@ async function dbConnect() {
 }
 
 dbConnect();
-
+app.use("/api/v1/user", userRoutes);
 module.exports = app;
