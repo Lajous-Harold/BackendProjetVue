@@ -10,17 +10,16 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       set(value) {
-        this.setDataValue(
-          "firstName",
-          value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
-        );
+        const name = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        this.setDataValue("firstName", name);
       },
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
       set(value) {
-        this.setDataValue("lastName", value.charAt(0).toUpperCase() + value.slice(1).toLowerCase());
+        const name = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        this.setDataValue("lastName", name);
       },
     },
     email: {
@@ -36,22 +35,20 @@ User.init(
       },
     },
     role: {
-      type: DataTypes.ENUM("ADMIN", "USER"),
-      defaultValue: "USER",
+      type: DataTypes.ENUM("user", "admin"),
+      allowNull: false,
+      defaultValue: "user",
     },
   },
-  {
-    modelName: "User",
-    sequelize: sequelizeClient,
-  }
+  { modelName: "User", sequelize: sequelizeClient }
 );
 
 // console.log(User === sequelizeClient.models.User);
 
-// async function synchroWithDb() {
-//   await sequelizeClient.sync({ alter: true });
+// async function synchrowithDb() {
+//   await User.sync({ alter: true });
 // }
 
-// synchroWithDb();
+// synchrowithDb();
 
 module.exports = User;
